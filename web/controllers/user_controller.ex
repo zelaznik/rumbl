@@ -3,7 +3,7 @@ defmodule Rumbl.UserController do
   alias Rumbl.User
 
   def new(conn, _params) do
-    changeset = User.changeset(%User{}, %{})
+    changeset = User.changeset(%User{})
     render conn, "new.html", changeset: changeset
   end
 
