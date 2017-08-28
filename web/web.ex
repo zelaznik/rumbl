@@ -24,6 +24,22 @@ defmodule Rumbl.Web do
     end
   end
 
+  def application_controller do
+    quote do
+      use Phoenix.Controller
+
+      alias Rumbl.Repo
+      import Ecto
+      import Ecto.Query
+
+      import Rumbl.Router.Helpers
+      import Rumbl.Gettext
+
+      import Rumbl.Auth, only: [authenticate_user: 2] # New import
+      plug :authenticate_user
+    end
+  end
+
   def view do
     quote do
       use Phoenix.View, root: "web/templates"
