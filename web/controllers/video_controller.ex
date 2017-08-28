@@ -12,7 +12,7 @@ defmodule Rumbl.VideoController do
 
   def new(conn, _params, user) do
     changeset =
-      conn.assigns.current_user
+      user
       |> build_assoc(:videos)
       |> Video.changeset()
 
@@ -21,7 +21,7 @@ defmodule Rumbl.VideoController do
 
   def create(conn, %{"video" => video_params}, user) do
     changeset =
-      conn.assigns.current_user
+      user
       |> build_assoc(:videos)
       |> Video.changeset(video_params)
 
