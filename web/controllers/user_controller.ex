@@ -17,10 +17,10 @@ defmodule Rumbl.UserController do
         |> Rumbl.Auth.login(user)
         |> put_flash(:info, "#{user.name} created!")
         |> redirect(to: user_path(conn, :index))
-      {:error, changeset} ->
+      {:error, changeset0} ->
         conn
         |> put_flash(:error, "Failed to create user.")
-        |> render("new.html", changeset: changeset)
+        |> render("new.html", changeset: changeset0)
     end
 
   end
@@ -33,16 +33,5 @@ defmodule Rumbl.UserController do
   def show(conn, %{"id" => id}) do
     user = Repo.get(Rumbl.User, id)
     render conn, "show.html", user: user
-  end
-
-  defp authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error, "You must be logged in to access that page")
-      |> redirect(to: page_path(conn, :index))
-      |> halt()
-    end
   end
 end
