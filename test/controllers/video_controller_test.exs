@@ -35,7 +35,7 @@ defmodule Rumbl.VideoControllerTest do
   end
 
   @tag login_as: "max"
-  test "requires suer authentication on all actions", %{conn: conn, user: user} do
+  test "requires user authentication on all actions", %{conn: conn, user: user} do
     user_video = insert_video(user, title: "funny cats")
     other_video = insert_video(insert_user(%{username: "other"}), title: "another video")
 
