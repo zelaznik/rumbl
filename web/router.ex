@@ -26,6 +26,6 @@ defmodule Rumbl.Router do
   scope "/manage", Rumbl do
     pipe_through [:browser, :authenticate_user]
 
-    resources "/videos", VideoController
+    #resources "/videos", VideoController
   end
 end
